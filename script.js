@@ -11,15 +11,22 @@ function randomColor() {
 
 //fonction pour verifier s'il y a une div dans le container
 function checkDiv() {
-    let container = document.getElementById('container');
     let boxes = document.getElementsByClassName('box');
     if (boxes.length > 0) {
         document.getElementById('removeLastButton').style.display = "inline-block";
         document.getElementById('removeAllDiv').style.display = "inline-block";
-    } else {
+        document.getElementById('shuffleButton').style.display = "inline-block";
+    if(boxes,length > 1) {
+    }else {
+          document.getElementById('shuffleButton').style.display= "none";
+         }
+        }else{
         document.getElementById('removeLastButton').style.display = "none";
         document.getElementById('removeAllDiv').style.display = "none";
+        document.getElementById('shuffleButton').style.display = "none";
+
     }
+
 }
 
 //créé une fonction qui va générer une div
@@ -33,9 +40,14 @@ function addDiv() {
     newDiv.className = 'box'; //2ème méthode
     //on va ajouter un style a notre div => <div class="box" style="background-color: red"></div>
     newDiv.style.backgroundColor = randomColor();
+    //ajout d'un evenement sur la div
+    newDiv.addEventListener("click", ()=>{
+        container.removeChild(newDiv);
+        checkDiv();
+    })
+
     //on va imbriquer la nouvelle div dans la div container
     container.appendChild(newDiv);
-    checkDiv();
 }
 
 //fonction enleve la derniere div
@@ -66,6 +78,23 @@ addButton.addEventListener("click", () => {
     addDiv();
 });
 
+//fonction qui melange le tableau
+function shuffleDiv(){
+    let container = document.getElementById('container');
+    let boxes = document.getElementsByClassName('box');
+    if(boxes.length > 1){
+        //on mélange les element du tableau divArray
+        console.log('boxes',boxes)
+        let divArray = Array.from(boxes).sort(()=> Math.random() - 0.5);
+        //on vide le container
+        container.innerHTML = "";
+        //on ajoute les divs dans le container
+        divArray.forEach((div) => {
+            container.appendChild(div);            
+        })
+    }
+}
+
 //on ajoute un evenement a notre bouton avec l'id "removeLastButton"
 document.getElementById('removeLastButton').addEventListener("click", () => {
     removeLastDiv();
@@ -76,7 +105,6 @@ document.getElementById('removeAllDiv').addEventListener("click", () => {
     removeAll();
 })
 
-checkDiv();
 
 
 
