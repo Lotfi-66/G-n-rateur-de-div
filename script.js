@@ -12,3 +12,10 @@ function addDiv() {
     //on va imbriquer la nouvelle div dans la div container
     container.appendChild(newDiv);
 }
+
+
+//on ajoute un evenement a notre bouton avec l'id "addButton"
+//je recupère le bouton avc l'id "addButton"
+let addButton = document.getElementById('addButton');
+//on ajoute un bouton click
+addButton.addEventListener("click", ()=>{});
