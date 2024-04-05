@@ -9,6 +9,19 @@ function randomColor() {
     return "rgb(" + randomNumber() + "," + randomNumber() + "," + randomNumber() + ")";
 }
 
+//fonction pour verifier s'il y a une div dans le container
+function checkDiv() {
+    let container = document.getElementById('container');
+    let boxes = document.getElementsByClassName('box');
+    if (boxes.length > 0) {
+        document.getElementById('removeLastButton').style.display = "inline-block";
+        document.getElementById('removeAllDiv').style.display = "inline-block";
+    } else {
+        document.getElementById('removeLastButton').style.display = "none";
+        document.getElementById('removeAllDiv').style.display = "none";
+    }
+}
+
 //créé une fonction qui va générer une div
 function addDiv() {
     //on récupere la div avec l'id container
@@ -22,6 +35,7 @@ function addDiv() {
     newDiv.style.backgroundColor = randomColor();
     //on va imbriquer la nouvelle div dans la div container
     container.appendChild(newDiv);
+    checkDiv();
 }
 
 //fonction enleve la derniere div
@@ -32,13 +46,15 @@ function removeLastDiv() {
     if (boxes.length > 0) {
         //si j'ai au moins une div de créée j'enlève la dernière
         container.removeChild(boxes[boxes.length - 1]);
+        checkDiv();
     }
 }
 
 //fonction qui supprime toutes les divs
-function removeAll(){
+function removeAll() {
     let container = document.getElementById('container');
     container.innerHTML = "";
+    checkDiv();
 }
 
 //on ajoute un evenement a notre bouton avec l'id "addButton"
@@ -59,6 +75,8 @@ document.getElementById('removeLastButton').addEventListener("click", () => {
 document.getElementById('removeAllDiv').addEventListener("click", () => {
     removeAll();
 })
+
+checkDiv();
 
 
 
