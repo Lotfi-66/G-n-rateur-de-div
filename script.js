@@ -2,7 +2,7 @@
 function addDiv() {
     //on récupere la div avec l'id container
     let container = document.getElementById('container');
-    //on créé une div
+    //on créé une div => <div></div>
     let newDiv = document.createElement('div');
     //on va ajouter une classe à notre div <div class="box"></div>
     //newDiv.classList.add("box"); //1ère méthode
