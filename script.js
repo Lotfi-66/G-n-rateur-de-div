@@ -18,4 +18,7 @@ function addDiv() {
 //je recupère le bouton avc l'id "addButton"
 let addButton = document.getElementById('addButton');
 //on ajoute un bouton click
-addButton.addEventListener("click", ()=>{});
+addButton.addEventListener("click", () => {
+    //on appelle notre fonction addDiv
+    addDiv();
+});
